@@ -12,7 +12,7 @@
    <children>
       <Label layoutX="104.0" layoutY="27.0" text="Registro de Usuario">
          <font>
-            <System name="System Bold" size="21.0" />
+            <Font name="System Bold" size="21.0" />
          </font>
       </Label>
       

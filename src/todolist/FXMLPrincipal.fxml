@@ -13,7 +13,7 @@
    <children>
       <Label fx:id="lbBienvenida" layoutX="24.0" layoutY="20.0" text="Bienvenido, Usuario">
          <font>
-            <System name="System Bold" size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
       
