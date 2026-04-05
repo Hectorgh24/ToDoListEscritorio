@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="todolist.FXMLDetalleTareaController">
+   <children>
+      <Label layoutX="108.0" layoutY="20.0" text="Detalles de la Tarea">
+         <font>
+            <System name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      
+      <Label layoutX="40.0" layoutY="70.0" text="Título:">
+         <font>
+            <System name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbTitulo" layoutX="40.0" layoutY="90.0" prefWidth="320.0" wrapText="true" />
+      
+      <Label layoutX="40.0" layoutY="120.0" text="Descripción:">
+         <font>
+            <System name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="taDescripcion" editable="false" layoutX="40.0" layoutY="140.0" prefHeight="90.0" prefWidth="320.0" wrapText="true" />
+      
+      <Label layoutX="40.0" layoutY="250.0" text="Fecha a realizar:">
+         <font>
+            <System name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbFechaRealizar" layoutX="40.0" layoutY="270.0" prefWidth="320.0" />
+      
+      <Label layoutX="40.0" layoutY="300.0" text="Fecha de creación en sistema:">
+         <font>
+            <System name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbFechaCreacion" layoutX="40.0" layoutY="320.0" prefWidth="320.0" />
+      
+      <Label layoutX="40.0" layoutY="350.0" text="Estado actual:">
+         <font>
+            <System name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbEstado" layoutX="40.0" layoutY="370.0" prefWidth="320.0" />
+      
+      <Button layoutX="165.0" layoutY="410.0" mnemonicParsing="false" onAction="#clicCerrar" prefHeight="25.0" prefWidth="70.0" text="Cerrar" />
+   </children>
+</AnchorPane>

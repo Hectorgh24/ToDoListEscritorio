@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="todolist.FXMLPrincipalController">
+   <children>
+      <Label fx:id="lbBienvenida" layoutX="24.0" layoutY="20.0" text="Bienvenido, Usuario">
+         <font>
+            <System name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      
+      <Button layoutX="443.0" layoutY="21.0" mnemonicParsing="false" onAction="#clicCambiarPassword" text="Cambiar Contraseña" />
+      <Button layoutX="583.0" layoutY="21.0" mnemonicParsing="false" onAction="#clicCerrarSesion" text="Cerrar Sesión" />
+
+      <TabPane layoutX="24.0" layoutY="66.0" prefHeight="410.0" prefWidth="650.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Tareas Pendientes">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tvTareasPendientes" layoutX="14.0" layoutY="14.0" prefHeight="310.0" prefWidth="480.0">
+                          <columns>
+                            <TableColumn fx:id="colTituloPendiente" prefWidth="320.0" text="Título de la Tarea" />
+                            <TableColumn fx:id="colFechaPendiente" prefWidth="150.0" text="Fecha a Realizar" />
+                          </columns>
+                        </TableView>
+                        <Button layoutX="510.0" layoutY="14.0" mnemonicParsing="false" onAction="#clicAgregarTarea" prefWidth="130.0" text="Agregar Tarea" />
+                        <Button layoutX="510.0" layoutY="54.0" mnemonicParsing="false" onAction="#clicEditarTarea" prefWidth="130.0" text="Editar Tarea" />
+                        <Button layoutX="510.0" layoutY="94.0" mnemonicParsing="false" onAction="#clicVerDetalle" prefWidth="130.0" text="Ver Detalles" />
+                        <Button layoutX="510.0" layoutY="174.0" mnemonicParsing="false" onAction="#clicMarcarTerminada" prefWidth="130.0" text="Marcar Terminada" />
+                        <Button layoutX="510.0" layoutY="214.0" mnemonicParsing="false" onAction="#clicEliminarTarea" prefWidth="130.0" text="Eliminar Tarea" textFill="RED" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Tareas Terminadas">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tvTareasTerminadas" layoutX="14.0" layoutY="14.0" prefHeight="310.0" prefWidth="480.0">
+                           <columns>
+                              <TableColumn fx:id="colTituloTerminada" prefWidth="320.0" text="Título de la Tarea" />
+                              <TableColumn fx:id="colFechaTerminada" prefWidth="150.0" text="Fecha Realizada" />
+                           </columns>
+                        </TableView>
+                        <Button layoutX="510.0" layoutY="14.0" mnemonicParsing="false" onAction="#clicVerDetalle" prefWidth="130.0" text="Ver Detalles" />
+                        <Button layoutX="510.0" layoutY="54.0" mnemonicParsing="false" onAction="#clicEliminarTarea" prefWidth="130.0" text="Eliminar Tarea" textFill="RED" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

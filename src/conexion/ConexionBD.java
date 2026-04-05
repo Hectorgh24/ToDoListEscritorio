@@ -4,7 +4,6 @@
  */
 package conexion;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -12,12 +11,14 @@ import utilidad.Constantes;
 
 public class ConexionBD {
     
+    private static final String DRIVER = "jdbc:mysql://";
+    private static final String PARAMETROS_SSL = "?allowPublicKeyRetrieval=true&useSSL=false";
+    private static final String URL_CONEXION = DRIVER + Constantes.HOSTNAME + ":" + Constantes.PUERTO + "/" + Constantes.NOMBRE_BD + PARAMETROS_SSL;
+    
     public static Connection obtenerConexion() {
         Connection conexionBD = null;
         try {
-            String url = String.format("jdbc:mysql://%s:%s/%s?allowPublicKeyRetrieval=true&useSSL=false",
-                    Constantes.HOSTNAME, Constantes.PUERTO, Constantes.NOMBRE_BD);
-            conexionBD = DriverManager.getConnection(url, Constantes.USUARIO_BD, Constantes.PASSWORD_BD);
+            conexionBD = DriverManager.getConnection(URL_CONEXION, Constantes.USUARIO_BD, Constantes.PASSWORD_BD);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
