@@ -56,10 +56,14 @@ public class FXMLPrincipalController implements Initializable, INotificador {
     private Usuario usuarioSesion;
     private ObservableList<Tarea> tareasPendientes;
     private ObservableList<Tarea> tareasTerminadas;
-
+    private javafx.scene.control.Dialog<String> dialogoActual;
+    private PasswordField pfActual;
+    private TextInputDialog dialogoNueva;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         configurarTablas();
+        inicializarComponentesPassword();
     }    
 
     public void inicializarValores(Usuario usuario) {
@@ -72,9 +76,40 @@ public class FXMLPrincipalController implements Initializable, INotificador {
     private void configurarTablas() {
         colTituloPendiente.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         colFechaPendiente.setCellValueFactory(new PropertyValueFactory<>("fechaRealizar"));
+        tvTareasPendientes.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         
         colTituloTerminada.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         colFechaTerminada.setCellValueFactory(new PropertyValueFactory<>("fechaRealizar"));
+        tvTareasTerminadas.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+    }
+    
+    private void inicializarComponentesPassword() {
+        dialogoActual = new javafx.scene.control.Dialog<>();
+        dialogoActual.setTitle("Cambiar Contraseña");
+        dialogoActual.setHeaderText("Verificación de seguridad");
+
+        ButtonType btnAceptar = new ButtonType("Aceptar", javafx.scene.control.ButtonBar.ButtonData.OK_DONE);
+        dialogoActual.getDialogPane().getButtonTypes().addAll(btnAceptar, ButtonType.CANCEL);
+
+        pfActual = new PasswordField();
+        pfActual.setPromptText("Contraseña actual");
+
+        VBox vboxActual = new VBox();
+        vboxActual.setSpacing(10);
+        vboxActual.getChildren().addAll(new Label("Ingrese su contraseña ACTUAL:"), pfActual);
+        dialogoActual.getDialogPane().setContent(vboxActual);
+
+        dialogoActual.setResultConverter(dialogButton -> {
+            if (dialogButton == btnAceptar) {
+                return pfActual.getText();
+            }
+            return null;
+        });
+
+        dialogoNueva = new TextInputDialog();
+        dialogoNueva.setTitle("Cambiar Contraseña");
+        dialogoNueva.setHeaderText("Actualización de credenciales");
+        dialogoNueva.setContentText("Ingrese su NUEVA contraseña:");
     }
 
     private void cargarTareasPendientes() {
@@ -197,23 +232,48 @@ public class FXMLPrincipalController implements Initializable, INotificador {
 
     @FXML
     private void clicCambiarPassword(ActionEvent event) {
-        TextInputDialog dialogo = new TextInputDialog();
-        dialogo.setTitle("Cambiar Contraseña");
-        dialogo.setHeaderText("Actualización de credenciales");
-        dialogo.setContentText("Ingrese su nueva contraseña:");
+        pfActual.clear();
+        dialogoNueva.getEditor().clear();
 
-        Optional<String> resultado = dialogo.showAndWait();
-        if (resultado.isPresent()){
-            String nuevaPassword = resultado.get().trim();
-            if(!nuevaPassword.isEmpty()){
+        javafx.application.Platform.runLater(() -> pfActual.requestFocus());
+
+        Optional<String> resultadoActual = dialogoActual.showAndWait();
+        
+        if (resultadoActual.isPresent()) {
+            String passActual = resultadoActual.get().trim();
+            
+            if (passActual.isEmpty()) {
+                Utilidades.mostrarAlertaSimple("Advertencia", "La contraseña no puede estar vacía.", Alert.AlertType.WARNING);
+                return;
+            }
+
+            Respuesta validacion = UsuarioImp.iniciarSesion(usuarioSesion.getRfc(), passActual);
+            if (validacion.isError()) {
+                Utilidades.mostrarAlertaSimple("Error", "La contraseña actual ingresada es incorrecta.", Alert.AlertType.ERROR);
+                return; 
+            }
+
+            Optional<String> resultadoNueva = dialogoNueva.showAndWait();
+            
+            if (resultadoNueva.isPresent()) {
+                String nuevaPassword = resultadoNueva.get().trim();
+                
+                if (nuevaPassword.isEmpty()) {
+                    Utilidades.mostrarAlertaSimple("Advertencia", "La nueva contraseña no puede estar vacía.", Alert.AlertType.WARNING);
+                    return;
+                }
+
+                if (passActual.equals(nuevaPassword)) {
+                    Utilidades.mostrarAlertaSimple("Advertencia", "Ingresó la misma contraseña actual, ingrese una distinta.", Alert.AlertType.WARNING);
+                    return;
+                }
+
                 Respuesta respuesta = UsuarioImp.cambiarPassword(usuarioSesion.getRfc(), nuevaPassword);
                 if (!respuesta.isError()) {
                     Utilidades.mostrarAlertaSimple("Éxito", respuesta.getMensaje(), Alert.AlertType.INFORMATION);
                 } else {
                     Utilidades.mostrarAlertaSimple("Error", respuesta.getMensaje(), Alert.AlertType.ERROR);
                 }
-            } else {
-                Utilidades.mostrarAlertaSimple("Advertencia", "La contraseña no puede estar vacía.", Alert.AlertType.WARNING);
             }
         }
     }

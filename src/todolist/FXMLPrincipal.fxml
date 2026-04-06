@@ -9,50 +9,50 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="todolist.FXMLPrincipalController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #0079BF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="todolist.FXMLPrincipalController">
    <children>
-      <Label fx:id="lbBienvenida" layoutX="24.0" layoutY="20.0" text="Bienvenido, Usuario">
+      <Label fx:id="lbBienvenida" layoutX="24.0" layoutY="20.0" text="Bienvenido, Usuario" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
       
-      <Button layoutX="443.0" layoutY="21.0" mnemonicParsing="false" onAction="#clicCambiarPassword" text="Cambiar Contraseña" />
-      <Button layoutX="583.0" layoutY="21.0" mnemonicParsing="false" onAction="#clicCerrarSesion" text="Cerrar Sesión" />
+      <Button layoutX="340.0" layoutY="20.0" mnemonicParsing="false" onAction="#clicCambiarPassword" prefHeight="25.0" prefWidth="190.0" style="-fx-background-color: #ffffff; -fx-text-fill: #172B4D; -fx-font-weight: bold; -fx-cursor: hand;" text="Cambiar Contraseña" />
+      <Button layoutX="545.0" layoutY="20.0" mnemonicParsing="false" onAction="#clicCerrarSesion" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: #ffffff; -fx-text-fill: #172B4D; -fx-font-weight: bold; -fx-cursor: hand;" text="Cerrar Sesión" />
 
       <TabPane layoutX="24.0" layoutY="66.0" prefHeight="410.0" prefWidth="650.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Tareas Pendientes">
+          <Tab style="-fx-background-color: #172B4D; -fx-font-weight: bold; -fx-text-base-color: white;" text="Tareas Pendientes">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #172B4D;">
                      <children>
-                        <TableView fx:id="tvTareasPendientes" layoutX="14.0" layoutY="14.0" prefHeight="310.0" prefWidth="480.0">
+                        <TableView fx:id="tvTareasPendientes" layoutX="14.0" layoutY="14.0" prefHeight="310.0" prefWidth="465.0" style="-fx-background-color: #22272B; -fx-control-inner-background: #22272B; -fx-table-cell-border-color: #344563;">
                           <columns>
-                            <TableColumn fx:id="colTituloPendiente" prefWidth="320.0" text="Título de la Tarea" />
-                            <TableColumn fx:id="colFechaPendiente" prefWidth="150.0" text="Fecha a Realizar" />
+                            <TableColumn fx:id="colTituloPendiente" prefWidth="315.0" text="Título de la Tarea" />
+                            <TableColumn fx:id="colFechaPendiente" prefWidth="148.0" text="Fecha a Realizar" />
                           </columns>
                         </TableView>
-                        <Button layoutX="510.0" layoutY="14.0" mnemonicParsing="false" onAction="#clicAgregarTarea" prefWidth="130.0" text="Agregar Tarea" />
-                        <Button layoutX="510.0" layoutY="54.0" mnemonicParsing="false" onAction="#clicEditarTarea" prefWidth="130.0" text="Editar Tarea" />
-                        <Button layoutX="510.0" layoutY="94.0" mnemonicParsing="false" onAction="#clicVerDetalle" prefWidth="130.0" text="Ver Detalles" />
-                        <Button layoutX="510.0" layoutY="174.0" mnemonicParsing="false" onAction="#clicMarcarTerminada" prefWidth="130.0" text="Marcar Terminada" />
-                        <Button layoutX="510.0" layoutY="214.0" mnemonicParsing="false" onAction="#clicEliminarTarea" prefWidth="130.0" text="Eliminar Tarea" textFill="RED" />
+                        <Button layoutX="490.0" layoutY="14.0" mnemonicParsing="false" onAction="#clicAgregarTarea" prefWidth="150.0" style="-fx-background-color: #5AAC44; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="Agregar Tarea" />
+                        <Button layoutX="490.0" layoutY="54.0" mnemonicParsing="false" onAction="#clicEditarTarea" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-text-fill: #172B4D; -fx-font-weight: bold; -fx-cursor: hand;" text="Editar Tarea" />
+                        <Button layoutX="490.0" layoutY="94.0" mnemonicParsing="false" onAction="#clicVerDetalle" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-text-fill: #172B4D; -fx-font-weight: bold; -fx-cursor: hand;" text="Ver Detalles" />
+                        <Button layoutX="490.0" layoutY="174.0" mnemonicParsing="false" onAction="#clicMarcarTerminada" prefWidth="150.0" style="-fx-background-color: #00C2E0; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="Marcar Terminada" />
+                        <Button layoutX="490.0" layoutY="214.0" mnemonicParsing="false" onAction="#clicEliminarTarea" prefWidth="150.0" style="-fx-background-color: #EB5A46; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="Eliminar Tarea" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Tareas Terminadas">
+          <Tab style="-fx-background-color: #172B4D; -fx-font-weight: bold; -fx-text-base-color: white;" text="Tareas Terminadas">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #172B4D;">
                      <children>
-                        <TableView fx:id="tvTareasTerminadas" layoutX="14.0" layoutY="14.0" prefHeight="310.0" prefWidth="480.0">
+                        <TableView fx:id="tvTareasTerminadas" layoutX="14.0" layoutY="14.0" prefHeight="310.0" prefWidth="465.0" style="-fx-background-color: #22272B; -fx-control-inner-background: #22272B; -fx-table-cell-border-color: #344563;">
                            <columns>
-                              <TableColumn fx:id="colTituloTerminada" prefWidth="320.0" text="Título de la Tarea" />
-                              <TableColumn fx:id="colFechaTerminada" prefWidth="150.0" text="Fecha Realizada" />
+                              <TableColumn fx:id="colTituloTerminada" prefWidth="315.0" text="Título de la Tarea" />
+                              <TableColumn fx:id="colFechaTerminada" prefWidth="148.0" text="Fecha Realizada" />
                            </columns>
                         </TableView>
-                        <Button layoutX="510.0" layoutY="14.0" mnemonicParsing="false" onAction="#clicVerDetalle" prefWidth="130.0" text="Ver Detalles" />
-                        <Button layoutX="510.0" layoutY="54.0" mnemonicParsing="false" onAction="#clicEliminarTarea" prefWidth="130.0" text="Eliminar Tarea" textFill="RED" />
+                        <Button layoutX="490.0" layoutY="14.0" mnemonicParsing="false" onAction="#clicVerDetalle" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-text-fill: #172B4D; -fx-font-weight: bold; -fx-cursor: hand;" text="Ver Detalles" />
+                        <Button layoutX="490.0" layoutY="54.0" mnemonicParsing="false" onAction="#clicEliminarTarea" prefWidth="150.0" style="-fx-background-color: #EB5A46; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="Eliminar Tarea" />
                      </children>
                   </AnchorPane>
             </content>

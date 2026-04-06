@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package todolist;
 
 import dominio.TareaImp;
@@ -43,14 +39,12 @@ public class FXMLFormularioTareaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Inicialización básica
+        // Estilo para asegurar legibilidad en los campos de texto sobre fondo oscuro
+        taDescripcion.setStyle("-fx-control-inner-background: #ffffff; -fx-text-fill: #172b4d;");
+        tfTitulo.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #172b4d;");
+        dpFechaRealizar.getEditor().setStyle("-fx-text-fill: #172b4d;");
     }    
 
-    /**
-     * Método para recibir datos desde la pantalla principal.
-     * Si tarea es null, es un registro nuevo.
-     * Si tarea tiene datos, es modo edición.
-     */
     public void inicializarInformacion(Tarea tarea, int idUsuario, INotificador observador) {
         this.idUsuarioSesion = idUsuario;
         this.observador = observador;
@@ -76,14 +70,12 @@ public class FXMLFormularioTareaController implements Initializable {
     @FXML
     private void clicGuardar(ActionEvent event) {
         lbError.setText("");
-        
         String titulo = tfTitulo.getText().trim();
         String descripcion = taDescripcion.getText().trim();
         LocalDate fechaSeleccionada = dpFechaRealizar.getValue();
         
-        // Validaciones básicas
         if (titulo.isEmpty() || fechaSeleccionada == null) {
-            lbError.setText("Por favor, llena los campos obligatorios (*).");
+            lbError.setText("Error: Título y Fecha son obligatorios.");
             return;
         }
 
@@ -94,7 +86,6 @@ public class FXMLFormularioTareaController implements Initializable {
         tareaGuardar.setIdUsuario(idUsuarioSesion);
 
         Respuesta respuesta;
-        
         if (modoEdicion) {
             tareaGuardar.setIdTarea(tareaEdicion.getIdTarea());
             respuesta = TareaImp.editarTarea(tareaGuardar);
@@ -104,7 +95,7 @@ public class FXMLFormularioTareaController implements Initializable {
 
         if (!respuesta.isError()) {
             Utilidades.mostrarAlertaSimple("Éxito", respuesta.getMensaje(), Alert.AlertType.INFORMATION);
-            observador.notificarOperacion("GuardarTarea"); // Actualiza la tabla de la pantalla principal
+            observador.notificarOperacion("GuardarTarea"); 
             cerrarVentana();
         } else {
             Utilidades.mostrarAlertaSimple("Error", respuesta.getMensaje(), Alert.AlertType.ERROR);

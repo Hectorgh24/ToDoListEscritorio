@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package todolist;
 
 import dominio.UsuarioImp;
@@ -34,7 +30,9 @@ public class FXMLInicioSesionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Inicialización de componentes si es necesario
+        // Refuerzo visual para asegurar que los campos resalten sobre el fondo oscuro
+        tfRfc.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #172B4D;");
+        pfPassword.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #172B4D;");
     }    
 
     @FXML
@@ -44,7 +42,7 @@ public class FXMLInicioSesionController implements Initializable {
         String password = pfPassword.getText();
 
         if (rfc.isEmpty() || password.isEmpty()) {
-            lbError.setText("Por favor, ingrese RFC y contraseña.");
+            lbError.setText("Error: RFC y contraseña obligatorios.");
             return;
         }
 
@@ -77,9 +75,8 @@ public class FXMLInicioSesionController implements Initializable {
             FXMLLoader cargador = new FXMLLoader(getClass().getResource("FXMLPrincipal.fxml"));
             Parent vista = cargador.load();
             
-            // Error temporal aquí hasta generar el controlador principal
-            /* FXMLPrincipalController controlador = cargador.getController();
-               controlador.inicializarValores(usuario); */
+            FXMLPrincipalController controlador = cargador.getController();
+            controlador.inicializarValores(usuario); 
 
             Scene escena = new Scene(vista);
             Stage escenarioBase = (Stage) tfRfc.getScene().getWindow();

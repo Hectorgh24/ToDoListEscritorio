@@ -1,0 +1,20 @@
+/* Estilo para el fondo azul de la pantalla principal */
+.background-board {
+    -fx-background-color: #0079BF; /* Color azul estilo Trello */
+}
+
+/* Estilo para las "pantallas pequeñas" (las listas o columnas de tareas) */
+.task-list {
+    -fx-background-color: #172B4D; /* Color negro/oscuro */
+    -fx-background-radius: 5px; /* Bordes redondeados */
+    -fx-padding: 10px; /* Espaciado interno */
+}
+
+/* Estilo para las tareas individuales (las tarjetas) */
+.task-card {
+    -fx-background-color: #ffffff; /* Fondo blanco */
+    -fx-background-radius: 3px; /* Bordes redondeados */
+    -fx-padding: 10px; /* Espaciado interno */
+    -fx-margin: 5px 0; /* Margen para separarlas */
+}
+

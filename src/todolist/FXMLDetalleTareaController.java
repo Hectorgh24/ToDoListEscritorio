@@ -31,18 +31,30 @@ public class FXMLDetalleTareaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
     }    
 
-    public void inicializarDetalles(Tarea tarea) {
+   public void inicializarDetalles(Tarea tarea) {
         if (tarea != null) {
-            lbTitulo.setText(tarea.getTitulo());
-            taDescripcion.setText(tarea.getDescripcion() != null && !tarea.getDescripcion().isEmpty() ? tarea.getDescripcion() : "Sin descripción agregada.");
-            lbFechaRealizar.setText(tarea.getFechaRealizar() != null ? tarea.getFechaRealizar().toString() : "No definida");
-            lbFechaCreacion.setText(tarea.getFechaCreacion() != null ? tarea.getFechaCreacion().toString() : "No definida");
+            if (lbTitulo != null) lbTitulo.setText(tarea.getTitulo());
             
-            String estado = tarea.getNombreEstado();
-            if(estado == null || estado.isEmpty()) {
-                estado = (tarea.getIdEstado() == 1) ? "Pendiente" : "Terminada";
+            if (taDescripcion != null) {
+                taDescripcion.setText(tarea.getDescripcion() != null && !tarea.getDescripcion().isEmpty() 
+                    ? tarea.getDescripcion() : "Sin descripción agregada.");
+                // Aplicamos el estilo de Trello directamente
+                taDescripcion.setStyle("-fx-control-inner-background: #ffffff; -fx-text-fill: #172b4d;");
             }
-            lbEstado.setText(estado);
+            
+            if (lbFechaRealizar != null) 
+                lbFechaRealizar.setText(tarea.getFechaRealizar() != null ? tarea.getFechaRealizar().toString() : "No definida");
+            
+            if (lbFechaCreacion != null) 
+                lbFechaCreacion.setText(tarea.getFechaCreacion() != null ? tarea.getFechaCreacion().toString() : "No definida");
+            
+            if (lbEstado != null) {
+                String estado = tarea.getNombreEstado();
+                if(estado == null || estado.isEmpty()) {
+                    estado = (tarea.getIdEstado() == 1) ? "Pendiente" : "Terminada";
+                }
+                lbEstado.setText(estado);
+            }
         }
     }
 

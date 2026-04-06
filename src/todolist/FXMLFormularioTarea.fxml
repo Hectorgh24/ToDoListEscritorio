@@ -8,26 +8,42 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="todolist.FXMLFormularioTareaController">
+<AnchorPane prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #172B4D;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="todolist.FXMLFormularioTareaController">
    <children>
-      <Label fx:id="lbTituloPantalla" layoutX="40.0" layoutY="20.0" text="Formulario de Tarea">
+      <Label fx:id="lbTituloPantalla" layoutX="40.0" layoutY="20.0" text="Formulario de Tarea" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
       
-      <Label layoutX="40.0" layoutY="70.0" text="Título de la tarea (*):" />
-      <TextField fx:id="tfTitulo" layoutX="40.0" layoutY="90.0" prefHeight="25.0" prefWidth="320.0" promptText="Ej. Hacer las compras" />
+      <Label layoutX="40.0" layoutY="70.0" text="Título de la tarea :" textFill="#EBECF0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfTitulo" layoutX="40.0" layoutY="90.0" prefHeight="30.0" prefWidth="320.0" promptText="Ej. Hacer las compras" style="-fx-background-color: #ffffff; -fx-text-fill: #172B4D; -fx-border-radius: 3px;" />
       
-      <Label layoutX="40.0" layoutY="130.0" text="Descripción:" />
-      <TextArea fx:id="taDescripcion" layoutX="40.0" layoutY="150.0" prefHeight="80.0" prefWidth="320.0" promptText="Detalles adicionales de la tarea..." wrapText="true" />
+      <Label layoutX="40.0" layoutY="130.0" text="Descripción:" textFill="#EBECF0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="taDescripcion" layoutX="40.0" layoutY="150.0" prefHeight="80.0" prefWidth="320.0" promptText="Detalles adicionales..." style="-fx-control-inner-background: #ffffff; -fx-text-fill: #172b4d;" wrapText="true" />
       
-      <Label layoutX="40.0" layoutY="250.0" text="Fecha a realizar (*):" />
-      <DatePicker fx:id="dpFechaRealizar" editable="false" layoutX="40.0" layoutY="270.0" prefHeight="25.0" prefWidth="320.0" promptText="Seleccione una fecha" />
+      <Label layoutX="40.0" layoutY="250.0" text="Fecha a realizar :" textFill="#EBECF0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="dpFechaRealizar" editable="false" layoutX="40.0" layoutY="270.0" prefHeight="30.0" prefWidth="320.0" promptText="Seleccione una fecha" style="-fx-background-color: #ffffff;" />
       
-      <Label fx:id="lbError" layoutX="40.0" layoutY="310.0" prefHeight="17.0" prefWidth="320.0" textFill="RED" />
+      <Label fx:id="lbError" layoutX="40.0" layoutY="310.0" prefHeight="17.0" prefWidth="320.0" textFill="#FF8C8C">
+         <font>
+            <Font name="System Italic" size="11.0" />
+         </font>
+      </Label>
       
-      <Button layoutX="100.0" layoutY="345.0" mnemonicParsing="false" onAction="#clicGuardar" prefHeight="25.0" prefWidth="90.0" text="Guardar" />
-      <Button layoutX="210.0" layoutY="345.0" mnemonicParsing="false" onAction="#clicCancelar" prefHeight="25.0" prefWidth="90.0" text="Cancelar" />
+      <Button layoutX="100.0" layoutY="345.0" mnemonicParsing="false" onAction="#clicGuardar" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #5AAC44; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="Guardar" />
+      <Button layoutX="210.0" layoutY="345.0" mnemonicParsing="false" onAction="#clicCancelar" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #ffffff; -fx-text-fill: #172B4D; -fx-font-weight: bold; -fx-cursor: hand;" text="Cancelar" />
    </children>
 </AnchorPane>
